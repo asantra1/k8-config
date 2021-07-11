@@ -25,7 +25,13 @@ Host *
   IdentityFile ~/.ssh/id_ed25519
 ```
 
-Add SSH private key to GitHub
+Add SSH private key to key chain
 ```
 ssh-add -K ~/.ssh/id_ed25519
 ```
+Add the public key to GitHub
+
+```
+cat ~/.ssh/id_ed25519.pub | pbcopy
+```
+
