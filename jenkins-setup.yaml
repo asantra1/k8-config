@@ -28,7 +28,7 @@
             accessModes:
             - ReadWriteOnce
             capacity:
-              storage: 2Gi
+              storage: 10Gi
             persistentVolumeReclaimPolicy: Retain
             hostPath:
               path: /data/jenkins-volume/

@@ -207,12 +207,11 @@ controller:
 
   # List of plugins to be install during Jenkins controller start
   installPlugins:
+    - groovy:latest
     - kubernetes:1.29.4
     - workflow-aggregator:2.6
     - git:4.7.1
     - configuration-as-code:1.51
-    - docker-plugin:1.2.0
-    - sonar:2.12
 
   # Set to false to download the minimum required version of all dependencies.
   installLatestPlugins: false
@@ -700,7 +699,13 @@ agent:
             args: "cat"
             ttyEnabled: true
             privileged: true
-
+          - name: gradle
+            image: gradle:7.1.1-jdk-11
+            command:
+              - cat
+            tty: true
+          - name: dind
+            image: docker
   #  python: |
   #    - name: python
   #      label: jenkins-python
@@ -753,7 +758,7 @@ persistence:
   storageClass: jenkins-pv
   annotations: {}
   accessMode: "ReadWriteOnce"
-  size: "2Gi"
+  size: "10Gi"
   volumes:
   #  - name: nothing
   #    emptyDir: {}
